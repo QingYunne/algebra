@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Tính chất đại số & Thứ tự phép tính</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f9f9f9;
+      color: #2c3e50;
+      padding: 30px;
+      max-width: 800px;
+      margin: auto;
+    }
+    h1, h2 {
+      color: #34495e;
+      border-bottom: 2px solid #3498db;
+      padding-bottom: 5px;
+    }
+    .story {
+      background-color: #fff;
+      padding: 20px;
+      border-left: 5px solid #2980b9;
+      margin-bottom: 30px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      border-radius: 8px;
+    }
+    .example {
+      background-color: #fef9e7;
+      border-left: 5px solid #f1c40f;
+      padding: 10px 15px;
+      margin: 10px 0;
+      font-style: italic;
+    }
+    .note {
+      color: #c0392b;
+      font-weight: bold;
+    }
+    code {
+      background-color: #ecf0f1;
+      padding: 2px 5px;
+      border-radius: 3px;
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Tính chất đại số</h1>
+
+  <div class="story">
+    <h2>1. Tính chất giao hoán (Commutative property)</h2>
+    <p>Áp dụng cho phép <strong>cộng</strong> và <strong>nhân</strong>. Giao hoán nghĩa là <em>đổi chỗ</em> cho nhau.</p>
+    <div class="example">Ví dụ: <code>a + b = b + a</code>; <code>ab = ba</code></div>
+    <p>→ Trong cộng và nhân, các số <strong>bình đẳng</strong> nên đổi chỗ không sao. Nhưng trong trừ và chia, thì một bên là "bị trừ" hay "bị chia" – không ai bình đẳng cả nên không giao hoán được.</p>
+  </div>
+
+  <div class="story">
+    <h2>2. Tính chất kết hợp (Associative property)</h2>
+    <p>Áp dụng cho phép <strong>cộng</strong> và <strong>nhân</strong>. Kết hợp nghĩa là <em>gom nhóm</em>.</p>
+    <div class="example">Ví dụ: <code>(a + b) + c = a + (b + c)</code>; <code>(ab)c = a(bc)</code></div>
+    <p>→ Các số "chơi được với ai cũng được" thì mới kết hợp thoải mái. Trong phép trừ hay chia, thì có chuyện "chia chác", "bòn rút" – không sòng phẳng nên không kết hợp được.</p>
+  </div>
+
+  <div class="story">
+    <h2>3. Tính chất phân phối (Distributive property)</h2>
+    <p>Áp dụng cho <strong>phép nhân với phép cộng/trừ</strong>.</p>
+    <div class="example">Ví dụ: <code>a(b + c) = ab + ac</code>; <code>a(b - c) = ab - ac</code></div>
+    <p>→ Nhân phân phối vào trong, như chia quà: mỗi người nhận phần tương ứng.</p>
+    <div class="example">Ví dụ thêm: <code>a(b + c - d) = ab + ac - ad</code></div>
+  </div>
+
+  <h1>Thứ tự thực hiện phép tính</h1>
+
+  <div class="story">
+    <p>Trong một biểu thức toán học, ta cần tuân theo thứ tự ưu tiên sau:</p>
+    <ol>
+      <li><strong>Ngoặc</strong>: <code>()</code> – xử lý trước tiên.</li>
+      <li><strong>Căn, lũy thừa, trị tuyệt đối</strong>: các phép toán “nội tại”.</li>
+      <li><strong>Nhân và chia</strong>: từ trái sang phải.</li>
+      <li><strong>Cộng và trừ</strong>: từ trái sang phải.</li>
+    </ol>
+    <div class="example">Ví dụ: <code>2 + 3 × (4 - 1) = 2 + 3 × 3 = 2 + 9 = 11</code></div>
+    <p><span class="note">Ghi nhớ:</span> Nếu các phép có cùng mức ưu tiên, ta thực hiện <strong>từ trái sang phải</strong>.</p>
+  </div>
+
+</body>
+</html>
