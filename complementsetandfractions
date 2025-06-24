@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Tập Hợp & Câu Chuyện Phân Số</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f9f9f9;
+      color: #2c3e50;
+      padding: 30px;
+      max-width: 800px;
+      margin: auto;
+    }
+    h1, h2 {
+      color: #34495e;
+      border-bottom: 2px solid #3498db;
+      padding-bottom: 5px;
+    }
+    .story {
+      background-color: #fff;
+      padding: 20px;
+      border-left: 5px solid #2980b9;
+      margin-bottom: 30px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      border-radius: 8px;
+    }
+    .example {
+      background-color: #fef9e7;
+      border-left: 5px solid #f1c40f;
+      padding: 10px 15px;
+      margin: 10px 0;
+      font-style: italic;
+    }
+    .note {
+      color: #c0392b;
+      font-weight: bold;
+    }
+    code {
+      background-color: #ecf0f1;
+      padding: 2px 5px;
+      border-radius: 3px;
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Q và I – Cặp đôi đối lập định mệnh</h1>
+  <div class="story">
+    <p><strong>Câu chuyện:</strong> Trong vũ trụ toán học <code>R</code>, mỗi số thực hoặc là một số hữu tỷ (<code>Q</code>) hoặc là một số vô tỷ (<code>I</code>), chứ không thể “nửa này nửa kia” hay “ở giữa”.</p>
+    <div class="example">Giống như Messi: hoặc vô địch World Cup, hoặc không – không có trường hợp thứ ba nào xảy ra!</div>
+    <p>→ Nếu một số không nằm trong <code>I</code>, thì chắc chắn nó thuộc <code>Q</code>. Và ngược lại.</p>
+    <p><strong>Kết luận:</strong> Q và I là hai tập hợp bổ sung (complement) của nhau trong R.</p>
+  </div>
+
+  <h2>Z và I – Tưởng là đối thủ, hóa ra người dưng</h2>
+  <div class="story">
+    <p>Giả sử ta nghĩ: “Nếu không thuộc I thì chắc là thuộc Z”. Nhưng... đời không đơn giản vậy!</p>
+    <div class="example">Ví dụ: 0.5 không phải số nguyên, nhưng cũng đâu phải số vô tỷ?</div>
+    <p>→ Một số không thuộc Z có thể là <strong>số hữu tỷ</strong> dạng thập phân như <code>2/3</code>, <code>5.75</code>, v.v... không nhất thiết phải là số vô tỷ.</p>
+    <p><span class="note">Vậy thì:</span> Z và I <strong>không phải</strong> tập bổ sung của nhau. Nhưng vẫn <strong>không giao nhau</strong> (xung khắc), giống như 2 thế giới song song – không ai đụng chạm ai.</p>
+  </div>
+
+  <h2>Phân số và câu chuyện quả cam</h2>
+  <div class="story">
+    <p>Phân số là gì? Là số được viết dưới dạng <code>a/b</code>, với <code>a, b</code> là số nguyên và <code>b ≠ 0</code>.</p>
+    <div class="example">Nếu có 3 quả cam mà chia làm 4 phần thì 0/4 = 0 là chuyện hợp lý.<br>Nhưng nếu không có quả cam nào mà vẫn đòi chia (1/0)? Ủa alo? Chia gì vậy trời? 🤔</div>
+    <p>→ Vì thế, mẫu số <code>b</code> <strong>phải khác 0</strong>. Không phải vì lý thuyết, mà là vì nó phi logic, vô nghĩa.</p>
+  </div>
+
+  <h2>1/2 và 0.5 – Na và Vân có phải 2 người?</h2>
+  <div class="story">
+    <div class="example">Na ở nhà – Vân trên trường. Nhưng vẫn là một người mà thôi!</div>
+    <p>1/2 và 0.5 cũng vậy. Một đứa dùng phân số, một đứa dùng thập phân – nhưng bản chất là <strong>một</strong>.</p>
+    <p>→ Vì thế, đừng coi “phân số” là một tập riêng, “thập phân” là một tập khác. Chúng chỉ là <strong>cách biểu diễn</strong> của số hữu tỷ thôi.</p>
+    <p><strong>Định nghĩa đẹp:</strong> Phân số là <strong>SỰ BIỂU DIỄN</strong> số hữu tỷ dưới dạng tỉ lệ của hai số nguyên, với mẫu khác 0. (<em>Theo Wikipedia</em>)</p>
+  </div>
+
+</body>
+</html>
