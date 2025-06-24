@@ -22,8 +22,8 @@ if (!popupShown) {
       document.body.appendChild(popup);
 
       // Lưu cookie đến 23:59 hôm nay
-      const expire = new Date();
-      expire.setHours(23, 59, 59);
-      document.cookie = `popupShownDate=${today}; expires=${expire.toUTCString()}; path=/`;
+      // const expire = new Date();
+      // expire.setHours(23, 59, 59);
+      // document.cookie = `popupShownDate=${today}; expires=${expire.toUTCString()}; path=/`;
     });
 }
