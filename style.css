@@ -132,3 +132,21 @@ a:hover {
   border-radius: 8px;
   cursor: pointer;
 }
+
+button {
+  background-color: #3498db;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+button:hover {
+  background-color: #2980b9;
+}
+input, textarea {
+  width: 100%;
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
