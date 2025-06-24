@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <title>Trang Admin - Thêm Lời Chúa</title>
   <link rel="stylesheet" href="style.css">
+
+  <!-- Firebase SDK -->
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js"></script>
@@ -11,10 +13,12 @@
 <body>
   <h1>Quản lý Lời Chúa</h1>
 
+  <!-- Khu vực đăng nhập -->
   <div id="login-section">
     <button onclick="loginWithGoogle()">Đăng nhập Google</button>
   </div>
 
+  <!-- Form quản trị (ẩn cho đến khi đăng nhập đúng UID) -->
   <div id="admin-form" style="display:none;">
     <p id="welcome"></p>
     <label>Tiêu đề:</label><br>
@@ -28,47 +32,59 @@
   </div>
 
   <script>
+    // Cấu hình Firebase (lấy từ Firebase Console)
     const firebaseConfig = {
       apiKey: "AIzaSyDfMS29OItmuMVTJT9HRkmi_QrZhwXs50Q",
       authDomain: "loi-chua-moi-ngay-d41fb.firebaseapp.com",
       databaseURL: "https://loi-chua-moi-ngay-d41fb-default-rtdb.asia-southeast1.firebasedatabase.app",
       projectId: "loi-chua-moi-ngay-d41fb",
-      storageBucket: "loi-chua-moi-ngay-d41fb.firebasestorage.app",
+      storageBucket: "loi-chua-moi-ngay-d41fb.appspot.com",
       messagingSenderId: "430229528468",
       appId: "1:430229528468:web:3f3a2c5988d42b5ebcb981"
     };
     firebase.initializeApp(firebaseConfig);
 
     const provider = new firebase.auth.GoogleAuthProvider();
-    const allowedUID = "YOUR_UID_HERE"; // <-- Thay bằng UID của bạn
 
+    // 👇 Thay dòng dưới đây bằng UID thật của bạn sau khi đăng nhập lần đầu (in ra console hoặc alert)
+    const allowedUID = "THAY_UID_CUA_BAN_VAO_DAY";  // ví dụ: "mH2abcD34EFGxyzTuv"
+
+    // Hàm đăng nhập Google
     function loginWithGoogle() {
       firebase.auth().signInWithPopup(provider)
         .then((result) => {
           const user = result.user;
+
+          // 👇 Dòng này chỉ để kiểm tra UID lần đầu (sau đó bạn comment lại)
+          alert("UID của bạn là: " + user.uid);
+
+          // Nếu đúng UID bạn cho phép, hiển thị form
           if (user.uid === allowedUID) {
             document.getElementById("login-section").style.display = "none";
             document.getElementById("admin-form").style.display = "block";
             document.getElementById("welcome").innerText = "Chào " + user.displayName;
           } else {
-            alert("Bạn không có quyền truy cập.");
+            alert("❌ Bạn không có quyền truy cập.");
           }
         })
         .catch((error) => {
           console.error("Đăng nhập lỗi:", error);
+          alert("Lỗi đăng nhập: " + error.message);
         });
     }
 
+    // Gửi lời Chúa lên Firebase Realtime Database
     function submitLoiChua() {
       const tieuDe = document.getElementById("tieuDe").value.trim();
       const noiDung = document.getElementById("noiDung").value.trim();
-      const today = new Date().toISOString().split("T")[0];
+      const today = new Date().toISOString().split("T")[0];  // yyyy-mm-dd
 
       if (!tieuDe || !noiDung) {
-        alert("Điền đầy đủ nội dung!");
+        alert("⚠️ Điền đầy đủ nội dung!");
         return;
       }
 
+      // Gửi dữ liệu vào đường dẫn "loiChua/yyyy-mm-dd"
       firebase.database().ref("loiChua/" + today).set({ tieuDe, noiDung })
         .then(() => {
           document.getElementById("status").innerText = "✅ Gửi thành công!";
