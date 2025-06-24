@@ -1,64 +1,97 @@
-<! Doctype html>
-<html lang = "vi">
+<!DOCTYPE html>
+<html lang="vi">
 <head>
-  <meta charset = "uTF-8">
-  <title> Admin page - Add the Word of God </title>
-  <Link rel = "Stylesheet" href = "style.css">
+  <meta charset="UTF-8">
+  <title>Trang Admin - Thêm Lời Chúa</title>
+  <link rel="stylesheet" href="style.css">
 
-  <!-Firebase sdk->
-  <script src = "https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"> </ script>
-  <script src = "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js">
-  <script src = "https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js">
-
+  <!-- Firebase SDK (dùng dạng compat để tránh lỗi import/export) -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js"></script>
 </head>
 <body>
-  <H1> Manage the Word of God </h1>
+  <h1>Quản lý Lời Chúa</h1>
 
-  <!-Login area->
-  <DIV ID = "login-section">
-    <Button onclick = "loginwithgoogle ()"> Google login </htton>
-  </Vi>
+  <!-- Khu vực đăng nhập -->
+  <div id="login-section">
+    <button onclick="loginWithGoogle()">Đăng nhập Google</button>
+  </div>
 
-  <!
-  <DIV ID = "Admin-Form" style = "Display: none;">
-    <P ID = "Welcome"> </p>
-    <label> Title: </bel> <br>
-    <Input type = "text" ID = "tieude"> <br> <br>
+  <!-- Form quản trị (chỉ hiện nếu đăng nhập đúng UID) -->
+  <div id="admin-form" style="display:none;">
+    <p id="welcome"></p>
 
-    <label> Content: </bel> <br>
-    <TextArea ID = "NODAN" Rows = "4" Cols = "50"> </ Textarea> <br> <br> <br>
+    <label>Tiêu đề:</label><br>
+    <input type="text" id="tieuDe"><br><br>
 
-    <Button onclick = "submitloichua ()"> submitted to Firebase </urton>
-    <P ID = "Status"> </p>
-  </Vi>
+    <label>Nội dung:</label><br>
+    <textarea id="noiDung" rows="4" cols="50"></textarea><br><br>
 
-  <Slipt>
-    // Firebase configuration (taken from Firebase Console)
-    Const Firebaseconfig = {
-      Apikey: "aizasydfms29oitmumvtjt9hrkmi_qrzhwxs50q",
-      Authdomain: "Loi-chua-moi-nay-d41fb.firebasapp.com",
-      Databaseurl: "https://loi-chua-moi-ngay-d41fb-default-rtdb.asia-southeast1.firebasedatabase.app",
-      Projectid: "Loi-chua-moi-ngay-d41fb",
-      Storagebucket: "Loi-tua-hay-nay-d41fb.apppot.com",
-      Messaging Sentation: "430229528468",
-      AppID: "1: 430229528468: Web: 3f3a2c5988d42b5b5bcb981"
+    <button onclick="submitLoiChua()">Gửi lên Firebase</button>
+    <p id="status"></p>
+  </div>
+
+  <script>
+    // ✅ Cấu hình Firebase từ Firebase Console
+    const firebaseConfig = {
+      apiKey: "AIzaSyDfMS29OItmuMVTJT9HRkmi_QrZhwXs50Q",
+      authDomain: "loi-chua-moi-ngay-d41fb.firebaseapp.com",
+      databaseURL: "https://loi-chua-moi-ngay-d41fb-default-rtdb.asia-southeast1.firebasedatabase.app",
+      projectId: "loi-chua-moi-ngay-d41fb",
+      storageBucket: "loi-chua-moi-ngay-d41fb.appspot.com",
+      messagingSenderId: "430229528468",
+      appId: "1:430229528468:web:3f3a2c5988d42b5ebcb981"
     };
-    Firebase.initialiappp (Firebaseconfig);
+    firebase.initializeApp(firebaseConfig);
 
-    Const provider = new first
+    const provider = new firebase.auth.GoogleAuthProvider();
 
-    // 👇 Replace the line below with your real UID after the first login (print out the console or alert)
-    Const Alloweduid = "Replace_uid_cua_ban_Vao_Day";   // Example: "MH2ABCD34EFGXYZTUV"
+    // ⚠️ Thay dòng dưới bằng UID thật của bạn (sau khi đăng nhập lần đầu để lấy UID)
+    const allowedUID = "THAY_UID_CUA_BAN_VAO_DAY";
 
-    // Google login function
-    Function loginwithgoogle () {
-      firebase.auth (). Signinwithpopup (Provider)
-        .Then ((Result) => {
-          Const user = Result.user;
+    // 🔐 Đăng nhập bằng Google
+    function loginWithGoogle() {
+      firebase.auth().signInWithPopup(provider)
+        .then((result) => {
+          const user = result.user;
 
-          // 👇 This line is only for the first UID test (then you comment again)
-          Alert ("Your UID is:" + user.uid);
+          // 👇 Lấy UID của bạn lần đầu (xong rồi comment lại dòng dưới)
+          alert("UID của bạn là: " + user.uid);
 
-          // If the correct UID you allow, display the form
-          If (user.uid === Alloweduid) {
-            document.getelementbyid ("login-section"). Style.display = "none";
+          if (user.uid === allowedUID) {
+            document.getElementById("login-section").style.display = "none";
+            document.getElementById("admin-form").style.display = "block";
+            document.getElementById("welcome").innerText = "Chào " + user.displayName;
+          } else {
+            alert("❌ Bạn không có quyền truy cập.");
+          }
+        })
+        .catch((error) => {
+          console.error("Đăng nhập lỗi:", error);
+          alert("Đăng nhập thất bại: " + error.message);
+        });
+    }
+
+    // 📩 Gửi Lời Chúa lên Firebase Realtime Database
+    function submitLoiChua() {
+      const tieuDe = document.getElementById("tieuDe").value.trim();
+      const noiDung = document.getElementById("noiDung").value.trim();
+      const today = new Date().toISOString().split("T")[0]; // yyyy-mm-dd
+
+      if (!tieuDe || !noiDung) {
+        alert("⚠️ Điền đầy đủ nội dung!");
+        return;
+      }
+
+      firebase.database().ref("loiChua/" + today).set({ tieuDe, noiDung })
+        .then(() => {
+          document.getElementById("status").innerText = "✅ Gửi thành công!";
+        })
+        .catch((err) => {
+          document.getElementById("status").innerText = "❌ Lỗi: " + err.message;
+        });
+    }
+  </script>
+</body>
+</html>
