@@ -4,7 +4,7 @@ const today = new Date().toISOString().split("T")[0];
 const popupShown = document.cookie.includes("popupShownDate=" + today);
 
 if (!popupShown) {
-  fetch(`https://loi-chua-moi-ngay-d41fb-default-rtdb.asia-southeast1.firebasedatabase.app/${today}.json`)
+  fetch(`https://loi-chua-moi-ngay-d41fb-default-rtdb.asia-southeast1.firebasedatabase.app/loiChua/${today}.json`)
     .then(res => res.json())
     .then(data => {
       if (!data) return;
