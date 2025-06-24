@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Trang Admin - Thêm Lời Chúa</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js"></script>
+</head>
+<body>
+  <h1>Quản lý Lời Chúa</h1>
+
+  <div id="login-section">
+    <button onclick="loginWithGoogle()">Đăng nhập Google</button>
+  </div>
+
+  <div id="admin-form" style="display:none;">
+    <p id="welcome"></p>
+    <label>Tiêu đề:</label><br>
+    <input type="text" id="tieuDe"><br><br>
+
+    <label>Nội dung:</label><br>
+    <textarea id="noiDung" rows="4" cols="50"></textarea><br><br>
+
+    <button onclick="submitLoiChua()">Gửi lên Firebase</button>
+    <p id="status"></p>
+  </div>
+
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyDfMS29OItmuMVTJT9HRkmi_QrZhwXs50Q",
+      authDomain: "loi-chua-moi-ngay-d41fb.firebaseapp.com",
+      databaseURL: "https://loi-chua-moi-ngay-d41fb-default-rtdb.asia-southeast1.firebasedatabase.app",
+      projectId: "loi-chua-moi-ngay-d41fb",
+      storageBucket: "loi-chua-moi-ngay-d41fb.firebasestorage.app",
+      messagingSenderId: "430229528468",
+      appId: "1:430229528468:web:3f3a2c5988d42b5ebcb981"
+    };
+    firebase.initializeApp(firebaseConfig);
+
+    const provider = new firebase.auth.GoogleAuthProvider();
+    const allowedUID = "YOUR_UID_HERE"; // <-- Thay bằng UID của bạn
+
+    function loginWithGoogle() {
+      firebase.auth().signInWithPopup(provider)
+        .then((result) => {
+          const user = result.user;
+          if (user.uid === allowedUID) {
+            document.getElementById("login-section").style.display = "none";
+            document.getElementById("admin-form").style.display = "block";
+            document.getElementById("welcome").innerText = "Chào " + user.displayName;
+          } else {
+            alert("Bạn không có quyền truy cập.");
+          }
+        })
+        .catch((error) => {
+          console.error("Đăng nhập lỗi:", error);
+        });
+    }
+
+    function submitLoiChua() {
+      const tieuDe = document.getElementById("tieuDe").value.trim();
+      const noiDung = document.getElementById("noiDung").value.trim();
+      const today = new Date().toISOString().split("T")[0];
+
+      if (!tieuDe || !noiDung) {
+        alert("Điền đầy đủ nội dung!");
+        return;
+      }
+
+      firebase.database().ref("loiChua/" + today).set({ tieuDe, noiDung })
+        .then(() => {
+          document.getElementById("status").innerText = "✅ Gửi thành công!";
+        })
+        .catch((err) => {
+          document.getElementById("status").innerText = "❌ Lỗi: " + err.message;
+        });
+    }
+  </script>
+</body>
+</html>
