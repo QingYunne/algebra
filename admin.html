@@ -33,7 +33,6 @@
   </div>
 
   <script>
-    // ✅ Cấu hình Firebase từ Firebase Console
     const firebaseConfig = {
       apiKey: "AIzaSyDfMS29OItmuMVTJT9HRkmi_QrZhwXs50Q",
       authDomain: "loi-chua-moi-ngay-d41fb.firebaseapp.com",
@@ -47,7 +46,6 @@
 
     const provider = new firebase.auth.GoogleAuthProvider();
 
-    // ⚠️ Thay dòng dưới bằng UID thật của bạn (sau khi đăng nhập lần đầu để lấy UID)
     const allowedUID = "BZAcGJGNLzYbjsYJREdtFQpchq32";
 
     // 🔐 Đăng nhập bằng Google
@@ -56,8 +54,7 @@
         .then((result) => {
           const user = result.user;
 
-          // 👇 Lấy UID của bạn lần đầu (xong rồi comment lại dòng dưới)
-          alert("UID của bạn là: " + user.uid);
+          //alert("UID của bạn là: " + user.uid);
 
           if (user.uid === allowedUID) {
             document.getElementById("login-section").style.display = "none";
