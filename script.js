@@ -24,8 +24,8 @@ if (!popupShown) {
       // Lưu cookie đến 23:59 hôm nay
       // const expire = new Date();
       // expire.setHours(23, 59, 59);
-      // document.cookie = `popupShownDate=${today}; expires=${expire.toUTCString()}; path=/`;
-      // const expire = new Date(Date.now() + 10 * 60 * 1000); // 10 phút tính bằng mili giây
-      // document.cookie = `popupShownDate=true; expires=${expire.toUTCString()}; path=/`;
+      document.cookie = `popupShownDate=${today}; expires=${expire.toUTCString()}; path=/`;
+      const expire = new Date(Date.now() + 5 * 60 * 1000); // 10 phút tính bằng mili giây
+      document.cookie = `popupShownDate=true; expires=${expire.toUTCString()}; path=/`;
     });
 }
