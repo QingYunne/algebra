@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Lũy thừa – Giải thích dễ hiểu</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div style="text-align: center; margin-bottom: 20px;">
+    <a href="index.html" class="home-button">← Về trang chủ</a>
+  </div>
+  
+  <h1>Lũy thừa là gì?</h1>
+
+  <div class="story">
+    <p>Lũy thừa là cách <strong>nhân một số với chính nó nhiều lần</strong>.</p>
+    <div class="example">Ví dụ: <code>2^3 = 2 × 2 × 2 = 8</code></div>
+    <p><strong>Cơ số</strong> là số được nhân, <strong>số mũ</strong> là số lần nhân.</p>
+  </div>
+
+  <h1>Quy tắc lũy thừa và lý do</h1>
+
+  <div class="story">
+    <h2>1. Nhân cùng cơ số → Cộng số mũ</h2>
+    <p><strong>Quy tắc:</strong> <code>a^m × a^n = a^(m+n)</code></p>
+    <div class="example">Ví dụ: <code>2^3 × 2^4 = 2^7</code></div>
+    <p><strong>Vì sao?</strong> Vì ta đang nhân tổng cộng <code>m + n</code> lần số <code>a</code>.  
+      <br>Ví dụ: <code>2^3 = 2×2×2</code> và <code>2^4 = 2×2×2×2</code>.  
+      Khi nối hai chuỗi lại → có 7 số 2 nhân nhau → <code>2^7</code>.</p>
+  </div>
+
+  <div class="story">
+    <h2>2. Chia cùng cơ số → Trừ số mũ</h2>
+    <p><strong>Quy tắc:</strong> <code>a^m ÷ a^n = a^(m−n)</code></p>
+    <div class="example">Ví dụ: <code>5^6 ÷ 5^2 = 5^4</code></div>
+    <p><strong>Vì sao?</strong> Vì mỗi số <code>5</code> ở mẫu sẽ “hủy” 1 số <code>5</code> ở tử.  
+      <br>Ví dụ: <code>5×5×5×5×5×5 ÷ 5×5</code> → còn lại <code>5×5×5×5 = 5^4</code>.</p>
+  </div>
+
+  <div class="story">
+    <h2>3. Mũ của mũ → Nhân số mũ</h2>
+    <p><strong>Quy tắc:</strong> <code>(a^m)^n = a^(m×n)</code></p>
+    <div class="example">Ví dụ: <code>(3^2)^4 = 3^8</code></div>
+    <p><strong>Vì sao?</strong> <code>3^2 = 3×3</code>. Nếu ta lấy cái đó và lặp lại 4 lần, ta đang có:  
+      <br><code>(3×3) × (3×3) × (3×3) × (3×3)</code> → tổng cộng có 8 số 3 → <code>3^8</code>.</p>
+  </div>
+
+  <div class="story">
+    <h2>4. Mũ 0 luôn bằng 1</h2>
+    <p><strong>Quy tắc:</strong> <code>a^0 = 1</code> (với a ≠ 0)</p>
+    <div class="example">Ví dụ: <code>9^0 = 1</code></div>
+    <p><strong>Vì sao?</strong> Theo quy tắc chia lũy thừa:  
+      <code>a^m ÷ a^m = a^(m−m) = a^0</code>.  
+      Nhưng ta biết <code>a^m ÷ a^m = 1</code> (vì chia chính nó).  
+      → Vậy <code>a^0 = 1</code> để mọi thứ hợp lý!</p>
+  </div>
+
+  <div class="story">
+    <h2>5. Mũ 1 là chính nó</h2>
+    <p><strong>Quy tắc:</strong> <code>a^1 = a</code></p>
+    <div class="example">Ví dụ: <code>7^1 = 7</code></div>
+    <p><strong>Vì sao?</strong> Vì bạn chỉ nhân đúng một lần, nên giữ nguyên.</p>
+  </div>
+
+  <div class="story">
+    <h2>💡 Mẹo liên tưởng</h2>
+    <p>Lũy thừa giống như <strong>trồng cây</strong> – cơ số là giống cây, số mũ là số năm. Mỗi năm nhân giống lên!</p>
+    <p>→ Càng nhiều năm, số càng lớn 🌱🌿🌳</p>
+  </div>
+
+  <div style="text-align: center; margin-top: 40px;">
+    <a href="index.html" class="home-button">← Quay lại trang chủ</a>
+  </div>
+
+</body>
+</html>
